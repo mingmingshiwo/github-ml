@@ -1,0 +1,47 @@
+pwd;
+d = load('ex1data1.txt');
+X=d(:,1);
+y=d(:,2);
+y2=sin(X);
+%plot(X,y,'rx', X, y2 ,'bx');
+
+% m = length(X);
+% X = [ones(m,1),X];
+% theta = zeros(2,1);
+% %cost = sum((X*theta-y).^2)/(2*m)
+% temp = (X*theta - y);
+% cost = (temp' * temp)/(2*m)
+
+m = length(X);
+X = [ones(m,1),X];
+theta = zeros(2,1);
+alpha = 0.01;
+iteration = 1500;
+
+%gradient descnet
+[rst1,history1] = gradientDescent(X,y,theta,alpha,iteration);
+% [rst2,history2] = gradientDescent(X,y,theta,alpha,100000);
+% [rst3,history3] = gradientDescent(X,y,theta,0.02,100000);
+figure(1);
+plot(history1,'r');
+% figure(2);
+% plot(history2,'r');
+% figure(3);
+% plot(history3,'r');
+
+
+theta_0 = linspace(-10,10,100);
+theta_2 = linspace(-1,4,100);
+cost_metrix = zeros(length(theta_1),length(theta_2));
+
+for i = 1:length(theta_1)
+    for j = 1:length(theta_2);
+        t = [theta_1(i);theta_2(j)];
+        cost_metrix(i,j) = computeCost(X, y,t);
+    end
+end
+
+surf(theta_1,theta_2,cost_metrix');
+
+figure;
+contour(theta_1,theta_2,cost_metrix,logspace(-2,3,20));
