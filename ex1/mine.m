@@ -47,4 +47,4 @@ figure;
 contour(theta_0,theta_1,cost_metrix,logspace(-2,3,20));
 xlabel('\theta_0'); ylabel('\theta_1');
 hold on;
-plot(rst1(1), rst1(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+plot(rst1(1), rst1(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2); 
