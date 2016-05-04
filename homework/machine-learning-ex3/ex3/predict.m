@@ -20,7 +20,16 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
+X = [ones(m, 1) X];
+Z2 = X * Theta1';%5000*25
+A2 = sigmoid(Z2);
 
+A2 = [ones(m,1) A2] ;
+
+Z3 = A2 * Theta2';
+A3 = sigmoid(Z3);
+
+[temp,p] = max(A3, [], 2);
 
 
 
