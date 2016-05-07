@@ -61,17 +61,43 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
+X_ = [ones(m,1) X];
+Z2 = X_*Theta1';
+A2 = sigmoid(Z2);
+
+A2_=[ones(m,1) A2];
+Z3 = A2_ * Theta2';
+A3 = sigmoid(Z3);
+
+A3t = A3';
+v3 = A3t(:);
+v3t = v3';%A3的横向展开 1*50000
+
+Y=zeros(num_labels,m);
+for i=1:m
+    Y(y(i,1),i)=1;
+end
+
+vy=Y(:);%把y(i,1)映射成向量再连起来
+
+J = (log(v3t)*vy + log(1-v3t)*(1-vy))*(-1/m);
+Theta1_nobias = Theta1(:,2:end);
+Theta2_nobias = Theta2(:,2:end);
+Theta1_nobias_v = Theta1_nobias(:);
+Theta2_nobias_v = Theta2_nobias(:);
+J = J + lambda/(2*m) * (Theta1_nobias_v' * Theta1_nobias_v + Theta2_nobias_v' * Theta2_nobias_v);
 
 
+Y2 = zeros(m, num_labels);
+for i=1:m
+    Y2(i,y(m,1))=1;
+end
 
+d3 = A3 - Y2;
+d2 = d3 * Theta2 .* sigmoidGradient(Z2);
 
-
-
-
-
-
-
-
+Theta1_grad=d2'*X_ ./m;
+Theta2_grad=d3'*A2_ ./m;
 
 
 

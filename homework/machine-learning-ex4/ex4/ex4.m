@@ -41,8 +41,8 @@ sel = sel(1:100);
 
 displayData(X(sel, :));
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+%fprintf('Program paused. Press enter to continue.\n');
+%pause;
 
 
 %% ================ Part 2: Loading Parameters ================
