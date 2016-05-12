@@ -104,12 +104,11 @@ for i=1:m
     d3=a3i'-yiv;%10*1
     d2=Theta2_nobias'*d3 .* sigmoidGradient(z2i');%25*1
     
-    Theta1_grad = Theta1_grad + d2*[ones(1),xi];%25*401
-    Theta2_grad = Theta2_grad + d3*[ones(1),a2i];%10*26   
+    Theta1_grad = Theta1_grad + (d2*[ones(1),xi])/m;%25*401
+    Theta2_grad = Theta2_grad + (d3*[ones(1),a2i])/m;%10*26
+   
 end    
 
-Theta1_grad = (Theta1_grad + Theta1_reg)/m;
-Theta2_grad = (Theta2_grad + Theta2_reg)/m;
 
 
 
