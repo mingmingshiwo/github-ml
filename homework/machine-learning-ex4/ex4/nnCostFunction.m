@@ -63,11 +63,19 @@ Theta2_grad = zeros(size(Theta2));
 %
 X_ = [ones(m,1) X];
 Z2 = X_*Theta1';
+<<<<<<< HEAD
 A2 = sigmoid(Z2);% 5000*25
 
 A2_=[ones(m,1) A2];
 Z3 = A2_ * Theta2';
 A3 = sigmoid(Z3);% 5000*10
+=======
+A2 = sigmoid(Z2);
+
+A2_=[ones(m,1) A2];
+Z3 = A2_ * Theta2';
+A3 = sigmoid(Z3);
+>>>>>>> 80cd37cba449c1d7da555014d63685625ccc3965
 
 A3t = A3';
 v3 = A3t(:);
@@ -87,6 +95,7 @@ Theta1_nobias_v = Theta1_nobias(:);
 Theta2_nobias_v = Theta2_nobias(:);
 J = J + lambda/(2*m) * (Theta1_nobias_v' * Theta1_nobias_v + Theta2_nobias_v' * Theta2_nobias_v);
 
+<<<<<<< HEAD
 %0512
 Theta1_grad_zero = zeros(size(Theta1_grad,1),1);%25*1
 Theta2_grad_zero = zeros(size(Theta2_grad,1),1);%10*1
@@ -112,6 +121,19 @@ Theta1_grad = (Theta1_grad + Theta1_reg)/m;
 Theta2_grad = (Theta2_grad + Theta2_reg)/m;
 
 
+=======
+
+Y2 = zeros(m, num_labels);
+for i=1:m
+    Y2(i,y(m,1))=1;
+end
+
+d3 = A3 - Y2;
+d2 = d3 * Theta2 .* sigmoidGradient(Z2);
+
+Theta1_grad=d2'*X_ ./m;
+Theta2_grad=d3'*A2_ ./m;
+>>>>>>> 80cd37cba449c1d7da555014d63685625ccc3965
 
 
 
